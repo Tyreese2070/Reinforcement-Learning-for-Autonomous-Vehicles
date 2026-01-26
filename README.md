@@ -1,6 +1,3 @@
-TODO:
-* Test Airsim Colosseum setup
-
 # Background Research
 * Read the papers related to reinforcement learning applied to self driving cars
 * Research into sample inefficiency
@@ -11,7 +8,7 @@ Explain the use of algorithms being used like PPO. Show the RL feedback loop. Ex
 
 # Methodology
 * Complete the tasks from supervisor
-* Read technical documentation for libraries being used and AirSim Colosseum
+* Read technical documentation for libraries being used and Cosys Airsim
 * System architecture diagram
 * Justification of Colosseum
 * Explain the state space
