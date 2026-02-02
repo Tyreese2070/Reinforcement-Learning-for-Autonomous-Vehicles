@@ -1,3 +1,5 @@
+Note: For the implementation, combine rl with imitation learning and curriculum learning
+
 # Background Research
 * Read the papers related to reinforcement learning applied to self driving cars
 * Research into sample inefficiency
