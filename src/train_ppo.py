@@ -9,7 +9,7 @@ LOG_DIR = "../logs/ppo_baseline"
 
 env_config = dict(
     use_render=False,
-    traffic_density=0.1,
+    traffic_density=0.0, # for the more challenging tasks, increase this
     map="S",
     start_seed=42,
     random_traffic=False,

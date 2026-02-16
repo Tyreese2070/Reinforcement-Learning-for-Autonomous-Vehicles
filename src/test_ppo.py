@@ -6,7 +6,7 @@ MODEL_LOCATION = "../models/ppo_baseline"
 def test_agent():
     env = MetaDriveEnv(dict(
         use_render=True,
-        traffic_density=0.1,
+        traffic_density=0.0,
         map="S",
         manual_control=False,
     ))
