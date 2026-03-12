@@ -1,11 +1,14 @@
 import os
-from metadrive.envs.metadrive_env import MetaDriveEnv
+os.environ["KMP_DUPLICATE_LIB_OK"] = "TRUE"
+
+import torch
 from stable_baselines3 import PPO
 from stable_baselines3.common.callbacks import CheckpointCallback
+from custom_env import CustomMetaDriveEnv
 
 TRAINING_STEPS = 100000
-MODEL_LOCATION = "../models/ppo_baseline"
-LOG_DIR = "../logs/ppo_baseline"
+MODEL_LOCATION = "../models/ppo_custom_reward"
+LOG_DIR = "../logs/ppo_custom_reward"
 
 env_config = dict(
     use_render=False,
@@ -13,10 +16,11 @@ env_config = dict(
     map="S",
     start_seed=42,
     random_traffic=False,
+    target_speed=30.0,
 )
 
 def train_baselines():
-    env = MetaDriveEnv(env_config)
+    env = CustomMetaDriveEnv(env_config)
     model = PPO("MlpPolicy", env, verbose=1, tensorboard_log=LOG_DIR, learning_rate=0.0003, n_steps=2048)
     print("Training PPO model")
     model.learn(total_timesteps=TRAINING_STEPS)
