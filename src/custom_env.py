@@ -33,7 +33,7 @@ class CustomMetaDriveEnv(MetaDriveEnv):
         Custom reward function.
         """
 
-        vehicle =  self.vehicles[vehicle_id]
+        vehicle =  self.agents[vehicle_id]
         step_info = dict()
 
         # Get current stats
