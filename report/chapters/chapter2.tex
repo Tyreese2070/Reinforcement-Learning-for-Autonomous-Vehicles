@@ -3,11 +3,60 @@
 
 <Everything that comes under the `Methodology' criterion in the mark scheme should be described in one, or possibly more than one, chapter(s).>
 
-\section{A section}
-\lipsum[5]
+Plan:
+Implement and train PPO agent for tasks.
+Use computer vision for object detection.
+implement curriculum learning, imitation learning for the same tasks
+compare results
 
-\subsection{A sub-section}
-\lipsum[6]
+Go over the design of the system e.g environment, states, actions.
 
-\section{Another section}
-\lipsum[7]
+
+\section{Project Management}
+\subsection{Version Control}
+GitHub was used consistently during the development of this project to utilise its useful features. GitHub allows for tracking changes between each commit, which is particularly useful for identifying any issues caused by recent changes. Furthermore, I also used the branching feature to keep the development of each deliverable separate. This also allowed me to store all my work online, reducing the risk of losing data and allowing me to access the work across different devices easily.
+
+\subsection{Methodology}
+I followed an agile approach for the development of this project, using sprints to iterate on each deliverable, for example:
+
+\begin{itemize}
+    \item \textbf{Sprint 1:} MetaDrive Environment Setup
+    \item \textbf{Sprint 2:} Reward function modelling
+    \item \textbf{Sprint 3:} Basic PPO implementation for a baseline model
+\end{itemize}
+
+Using this methodology allowed me to adjust to any unexpected issues that arise through constant monitoring such as using Tensorboard for monitoring the performance of the reward function and hyperparameters.
+
+\section{Software Design and Architecture}
+\subsection{Observation Space}
+The observation space acts as the input for the AI agent. I chose to use a 1 dimensional vector of values (velocity, distance to lane boundaries, current speed etc.)
+
+Using this reduced set of inputs reduces the amount of data the agent uses to learn these driving tasks, focusing on the goal of sample efficiency.
+
+\subsection{Action Space}
+The action space represents the possible actions the AI agent could use in order to reach the goal.
+
+The possible actions are continuous because the agent needs to be able to steer or accelerate using and value they need, similar to real life driving.
+
+\begin{itemize}
+    \item \textbf{Steering:} Continuous value in the range [-1, 1]
+    \item \textbf{Throttle:} Continuous value in the range [-1, 1]
+\end{itemize}
+
+
+\subsection{Reward Function}
+The reward function is a key part of reinforcement learning, it defines how the AI learns. It provides the agent with actions which give or takeaway rewards. The agent aims to gain the highest average reward during the training process, for example if the reward function gave a positive reward for speeding and a negative reward for turning, the agent would realise that speeding is good and steering is bad for increasing its total reward.
+
+$$R = w_{speed} \cdot V_{norm} - w_{dist} \cdot |d_{lateral}| - w_{steer} \cdot |\theta_{steer}|$$
+
+\begin{itemize}
+    \item \textbf{$V_{norm}:$} Normalised velocity towards the target
+    \item \textbf{$d_{lateral}:$} Displacement from the lane centre
+    \item \textbf{$w_n:$} Weights associated to each value to prioritise or de-prioritise them
+\end{itemize}
+
+\section{Data Collection and Preparation}
+
+\section{Problem Definition and Justification}
+
+\section{Evaluation Criteria}
