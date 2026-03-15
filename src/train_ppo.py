@@ -5,12 +5,13 @@ import torch
 from stable_baselines3 import PPO
 from stable_baselines3.common.callbacks import CheckpointCallback
 from stable_baselines3.common.vec_env import SubprocVecEnv
+from stable_baselines3.common.monitor import Monitor
 from custom_env import CustomMetaDriveEnv
 
 #TRAINING_STEPS = 100000
 TRAINING_STEPS = 500000
-MODEL_LOCATION = "../models/ppo_custom_reward"
-LOG_DIR = "../logs/ppo_custom_reward"
+MODEL_LOCATION = "../models/ppo_baseline"
+LOG_DIR = "../logs/ppo_baseline"
 
 def make_env(rank, seed=42):
 
@@ -24,6 +25,7 @@ def make_env(rank, seed=42):
             target_speed=30.0,
         )
         env = CustomMetaDriveEnv(env_config)
+        env = Monitor(env, LOG_DIR)
         return env
     return _init
 

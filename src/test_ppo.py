@@ -4,7 +4,7 @@ os.environ["KMP_DUPLICATE_LIB_OK"] = "TRUE"
 from stable_baselines3 import PPO
 from custom_env import CustomMetaDriveEnv
 
-MODEL_LOCATION = "../models/ppo_custom_reward.zip"
+MODEL_LOCATION = "../models/ppo_baseline.zip"
 
 def test_agent():
     env = CustomMetaDriveEnv(dict(
