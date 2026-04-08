@@ -37,7 +37,8 @@ class BehaviouralCloningModel(nn.Module):
         return self.network(x)
 
 def train_model():
-    df = pd.read_csv("../data/joystick_data.csv")
+    #df = pd.read_csv("../data/joystick_data.csv")
+    df = pd.read_csv("../data/straight_line_recovery.csv")
     X = df.iloc[:, :-2].values
     y = df.iloc[:, -2:].values
 
@@ -56,7 +57,7 @@ def train_model():
     model = BehaviouralCloningModel().to(device)
     
     criterion = nn.MSELoss()
-    optimiser = optim.Adam(model.parameters(), lr=0.01)
+    optimiser = optim.Adam(model.parameters(), lr=0.001)
 
     # Training
     epochs = 50
