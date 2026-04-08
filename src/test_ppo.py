@@ -5,6 +5,7 @@ from stable_baselines3 import PPO
 from custom_env import CustomMetaDriveEnv
 
 MODEL_LOCATION = "../models/ppo_baseline.zip"
+#MODEL_LOCATION = "../models/ppo_il_pretrain.zip"
 
 def test_agent():
     env = CustomMetaDriveEnv(dict(
