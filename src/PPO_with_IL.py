@@ -66,6 +66,10 @@ def train_baselines():
         # Layer 3: 128 -> 64
         model.policy.mlp_extractor.policy_net[4].weight.copy_(bc_weights['network.4.weight'])
         model.policy.mlp_extractor.policy_net[4].bias.copy_(bc_weights['network.4.bias'])
+
+        model.policy.action_net.weight.copy_(bc_weights['network.6.weight'])
+        model.policy.action_net.bias.copy_(bc_weights['network.6.bias'])
+
     print("BC weights loaded")
 
     # Train the model
