@@ -4,14 +4,14 @@ os.environ["KMP_DUPLICATE_LIB_OK"] = "TRUE"
 from stable_baselines3 import PPO
 from custom_env import CustomMetaDriveEnv
 
-MODEL_LOCATION = "../models/ppo_baseline.zip"
+MODEL_LOCATION = "../models/ppo_baseline_stage2.zip"
 #MODEL_LOCATION = "../models/ppo_il_pretrain.zip"
 
 def test_agent():
     env = CustomMetaDriveEnv(dict(
         use_render=True,
-        traffic_density=0.0,
-        map="S",
+        traffic_density=0.2,
+        map="C",
         manual_control=False,
         start_seed=42,
         target_speed=30.0,

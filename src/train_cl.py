@@ -34,7 +34,7 @@ def get_curriculum_config(agent_type, stage):
             save_model_path = "../models/ppo_hybrid_stage2"
             
     elif stage == 3:
-        env_map = "O"
+        env_map = "C"
         traffic_density = 0.2
         random_traffic = True
         
