@@ -23,7 +23,8 @@ print("Joystick: {}".format(joystick.get_name()))
 env_config = {
     "map": "S", 
     "use_render": True,
-    "manual_control": False
+    "manual_control": False,
+    "random_lane_index": True,
 }
 env = MetaDriveEnv(env_config)
 obs, info = env.reset()
