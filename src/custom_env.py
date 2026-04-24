@@ -9,7 +9,7 @@ import numpy as np
 class CustomMetaDriveEnv(MetaDriveEnv):
     # Setup environment with custom configuration
     def __init__(self, config=None):
-        self.target_speed = 30.0
+        self.target_speed = 25.0
         if config and "target_speed" in config:
             self.target_speed_limit = config.pop("target_speed")
 
@@ -38,7 +38,7 @@ class CustomMetaDriveEnv(MetaDriveEnv):
 
         # Get current stats
         current_speed = vehicle.speed * 2.237  # m/s to mph
-        target_speed = 30.0  # (mph)
+        target_speed = self.target_speed_limit  # (mph)
 
         # Speed reward: Positive for keeping target speed, negative for speeding
         if current_speed <= target_speed:
@@ -52,26 +52,14 @@ class CustomMetaDriveEnv(MetaDriveEnv):
             total_reward -= 0.1
 
         # Lane keeping penalty increases the further the vechicle is from the center of the lane
-        #_, lateral_dist = vehicle.navigation.current_lane.local_coordinates(vehicle.position)
-        #lane_penalty = (abs(lateral_dist) / vehicle.navigation.get_current_lane_width()) * 1.0
-        #total_reward -= lane_penalty
-
-        # Penalise for erratic driving
-        #steering_action = abs(vehicle.last_current_action[0][0]) if vehicle.last_current_action else 0.0
-        #steering_penalty = 0.05 * steering_action 
-        #total_reward -= steering_penalty
-
-        # =============TEST==============
         _, lateral_dist = vehicle.navigation.current_lane.local_coordinates(vehicle.position)
         lane_penalty = ((abs(lateral_dist) / vehicle.navigation.get_current_lane_width()) ** 2) * 2.0
         total_reward -= lane_penalty
 
-        # 2. NEW STEERING PENALTY: Increased from 0.05 to 0.15 to stop the wobble
+        # Penalise for erratic driving
         steering_action = abs(vehicle.last_current_action[0][0]) if vehicle.last_current_action else 0.0
-        steering_penalty = 0.15 * steering_action 
+        steering_penalty = 0.05 * steering_action 
         total_reward -= steering_penalty
-
-        # ===============================
 
         # Penalise heavily for collisions and off road
         if vehicle.crash_vehicle or vehicle.crash_object or vehicle.crash_human or vehicle.crash_sidewalk:
