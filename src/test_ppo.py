@@ -6,11 +6,12 @@ from custom_env import CustomMetaDriveEnv
 
 MODEL_LOCATION = "../models/ppo_baseline_stage2.zip"
 #MODEL_LOCATION = "../models/ppo_il_pretrain.zip"
+#MODEL_LOCATION = "../models/ppo_hybrid_stage2.zip"
 
 def test_agent():
     env = CustomMetaDriveEnv(dict(
         use_render=True,
-        traffic_density=0.2,
+        traffic_density=0.0,
         map="C",
         manual_control=False,
         start_seed=42,

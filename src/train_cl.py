@@ -18,7 +18,7 @@ def parse_args():
 def get_curriculum_config(agent_type, stage):
     """Set filepath and env based on given stage"""
     
-    log_dir = f"../logs/ppo_{'baseline' if agent_type == 'baseline' else 'il_pretrain'}"
+    log_dir = f"../logs/{agent_type}"
 
     if stage == 2:
         env_map = "C"
@@ -34,8 +34,8 @@ def get_curriculum_config(agent_type, stage):
             save_model_path = "../models/ppo_hybrid_stage2"
             
     elif stage == 3:
-        env_map = "C"
-        traffic_density = 0.2
+        env_map = "SCSCCSS"
+        traffic_density = 0.05
         random_traffic = True
         
         # Stage 3 loads Stage 2 models
@@ -84,7 +84,7 @@ def train():
 
     print(f"Training for 500,000 steps...")
     #model.learn(total_timesteps=500000, reset_num_timesteps=True) true uses a new graph for tensorboard
-    model.learn(total_timesteps=500000, reset_num_timesteps=False)
+    model.learn(total_timesteps=500000, reset_num_timesteps=False, tb_log_name=f"stage{args.stage}")
 
     os.makedirs("../models", exist_ok=True)
     model.save(save_model_path)
