@@ -10,8 +10,8 @@ from custom_env import CustomMetaDriveEnv
 
 #TRAINING_STEPS = 100000
 TRAINING_STEPS = 500000
-MODEL_LOCATION = "../models/ppo_baseline"
-LOG_DIR = "../logs/ppo_baseline"
+MODEL_LOCATION = "../models/ppo_baseline_stage1"
+LOG_DIR = "../logs/baseline/stage1"
 
 def make_env(rank, seed=42):
 

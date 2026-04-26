@@ -9,7 +9,7 @@ import numpy as np
 class CustomMetaDriveEnv(MetaDriveEnv):
     # Setup environment with custom configuration
     def __init__(self, config=None):
-        self.target_speed = 30.0
+        self.target_speed = 25.0
         if config and "target_speed" in config:
             self.target_speed_limit = config.pop("target_speed")
 
@@ -38,7 +38,7 @@ class CustomMetaDriveEnv(MetaDriveEnv):
 
         # Get current stats
         current_speed = vehicle.speed * 2.237  # m/s to mph
-        target_speed = 30.0  # (mph)
+        target_speed = self.target_speed_limit  # (mph)
 
         # Speed reward: Positive for keeping target speed, negative for speeding
         if current_speed <= target_speed:
@@ -53,7 +53,7 @@ class CustomMetaDriveEnv(MetaDriveEnv):
 
         # Lane keeping penalty increases the further the vechicle is from the center of the lane
         _, lateral_dist = vehicle.navigation.current_lane.local_coordinates(vehicle.position)
-        lane_penalty = (abs(lateral_dist) / vehicle.navigation.get_current_lane_width()) * 1.0
+        lane_penalty = ((abs(lateral_dist) / vehicle.navigation.get_current_lane_width()) ** 2) * 2.0
         total_reward -= lane_penalty
 
         # Penalise for erratic driving
