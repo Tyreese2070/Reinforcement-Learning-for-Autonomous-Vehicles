@@ -35,6 +35,7 @@ Created and tested using Python 3.11.9
 ├── README.md
 
 └── requirements.txt        # Python dependencies
+```
 
 # Setup
 ```
