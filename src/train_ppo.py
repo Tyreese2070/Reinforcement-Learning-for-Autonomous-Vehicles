@@ -8,7 +8,6 @@ from stable_baselines3.common.vec_env import SubprocVecEnv
 from stable_baselines3.common.monitor import Monitor
 from custom_env import CustomMetaDriveEnv
 
-#TRAINING_STEPS = 100000
 TRAINING_STEPS = 500000
 MODEL_LOCATION = "../models/ppo_baseline_stage1"
 LOG_DIR = "../logs/baseline/stage1"

@@ -6,6 +6,7 @@ import pandas as pd
 import numpy as np
 from sklearn.model_selection import train_test_split
 import os
+import glob
 
 class DemoDataset(Dataset):
     def __init__(self, states, actions):
@@ -37,8 +38,11 @@ class BehaviouralCloningModel(nn.Module):
         return self.network(x)
 
 def train_model():
-    #df = pd.read_csv("../data/joystick_data.csv")
-    df = pd.read_csv("../data/straight_line_recovery.csv")
+    # Load all CSV files from the data directory
+    csv_files = glob.glob("../data/*.csv")
+    dfs = [pd.read_csv(file) for file in csv_files]
+    df = pd.concat(dfs, ignore_index=True)
+    
     X = df.iloc[:, :-2].values
     y = df.iloc[:, -2:].values
 
