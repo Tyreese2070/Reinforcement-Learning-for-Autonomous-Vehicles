@@ -21,6 +21,10 @@ class BehaviouralCloningModel(nn.Module):
         return self.network(x)
 
 def test_autonomous_driving():
+    """
+    Test trained bc model
+    """
+
     device = torch.device("cpu")
     model = BehaviouralCloningModel().to(device)
     

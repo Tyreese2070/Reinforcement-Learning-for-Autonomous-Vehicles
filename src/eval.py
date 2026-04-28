@@ -4,6 +4,8 @@ from stable_baselines3 import PPO
 from custom_env import CustomMetaDriveEnv
 
 def evaluate_model(agent_name, model_path, stage, env_map, traffic_density, episodes=100):
+    """
+    """
     if not os.path.exists(model_path + ".zip"):
         print(f"Skipping {agent_name} Stage {stage}: Could not find {model_path}.zip")
         return
@@ -37,11 +39,10 @@ def evaluate_model(agent_name, model_path, stage, env_map, traffic_density, epis
         length = 0
 
         while not done:
-            # deterministic=True forces the AI to take the BEST action, stopping random exploration
+            # deterministic=True forces the AI to take the best action, stopping random exploration
             action, _ = model.predict(obs, deterministic=True)
             
             step_result = env.step(action)
-            # Handle Gym 0.21 vs 0.26 API
             if len(step_result) == 5:
                 obs, reward, terminated, truncated, info = step_result
                 done = terminated or truncated
@@ -52,7 +53,6 @@ def evaluate_model(agent_name, model_path, stage, env_map, traffic_density, epis
             length += 1
 
             if done:
-                # MetaDrive triggers 'arrive_dest' if the car finishes without crashing
                 if info.get("arrive_dest", False):
                     successes += 1
                 ep_lengths.append(length)
@@ -72,8 +72,6 @@ def evaluate_model(agent_name, model_path, stage, env_map, traffic_density, epis
     print("-" * 35 + "\n")
 
 if __name__ == "__main__":
-    print("Starting Automated Table Generation for DEFAULT REWARD models...\n")
-
     # 1. Stage 1 (Straight Road)
     evaluate_model("Baseline (Default)", "../models/default_reward/ppo_baseline_stage1", 1, "S", 0.0)
     evaluate_model("Hybrid (Default)", "../models/default_reward/ppo_hybrid_stage1", 1, "S", 0.0)

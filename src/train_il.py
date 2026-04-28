@@ -38,6 +38,10 @@ class BehaviouralCloningModel(nn.Module):
         return self.network(x)
 
 def train_model():
+    """
+    Train bc model on on collected dataset.
+    """
+
     # Load all CSV files from the data directory
     csv_files = glob.glob("../data/*.csv")
     dfs = [pd.read_csv(file) for file in csv_files]

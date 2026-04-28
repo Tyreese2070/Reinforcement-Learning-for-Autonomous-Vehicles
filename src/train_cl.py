@@ -16,7 +16,9 @@ def parse_args():
     return parser.parse_args()
 
 def get_curriculum_config(agent_type, stage):
-    """Set filepath and env based on given stage"""
+    """
+    Set filepath and env based on given stage
+    """
     
     log_dir = f"../logs/{agent_type}"
 
@@ -64,6 +66,10 @@ def make_env(env_map, traffic_density, random_traffic, log_dir, rank, seed=42):
     return _init
 
 def train():
+    """
+    Train a PPO agent on the specified curriculum stage and save the best model
+    """
+
     args = parse_args()
     
     env_map, traffic_density, random_traffic, load_model_path, save_model_path, log_dir = get_curriculum_config(args.agent, args.stage)

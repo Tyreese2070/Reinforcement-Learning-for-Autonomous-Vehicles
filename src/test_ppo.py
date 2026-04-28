@@ -9,6 +9,14 @@ MODEL_LOCATION = "../models/ppo_baseline_stage2.zip"
 #MODEL_LOCATION = "../models/ppo_hybrid_stage2.zip"
 
 def test_agent():
+    """
+    Test a trained PPO agent.
+    Change MODEL_LOCATION to test different agents.
+
+    Stage 1: map="S", traffic_density=0.0, random_traffic=False
+    Stage 2: map="C", traffic_density=0.0, random_traffic=False
+    Stage 3: map="SCSCCSS", traffic_density=0.05, random_traffic=True
+    """
     env = CustomMetaDriveEnv(dict(
         use_render=True,
         traffic_density=0.0,

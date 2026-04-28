@@ -29,6 +29,9 @@ def make_env(rank, seed=42):
     return _init
 
 def train_baselines():
+    """
+    Train PPO on the custom MetaDrive environment.
+    """
     cpu_cores = os.cpu_count()
     env = SubprocVecEnv([make_env(i) for i in range(cpu_cores)])
 

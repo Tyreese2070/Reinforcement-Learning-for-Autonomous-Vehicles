@@ -31,6 +31,10 @@ def make_env(rank, seed=42):
     return _init
 
 def train_baselines():
+    """
+    Train a PPO agent after pretraining on the behavioural cloning dataset, and save the best model.
+    """
+
     cpu_cores = os.cpu_count()
     env = SubprocVecEnv([make_env(i) for i in range(cpu_cores)])
 
