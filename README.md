@@ -4,7 +4,7 @@ This project creates a hybrid algorithm, combining PPO, behavioural cloning, and
 Created and tested using Python 3.11.9
 
 
-# Repository Structure
+# Repository Structure and Usage
 
 ```text
 
@@ -35,6 +35,13 @@ Created and tested using Python 3.11.9
 ├── README.md
 
 └── requirements.txt        # Python dependencies
+```
+
+train_ppo.py and PPPO_with_IL.py should be used for training the first stage.
+train_cl.py can be used for training both hybrid and baseline models in stages 2 and 3.
+
+```bash
+python train_cl.py --agent {hybrid, baseline} --stage {2,3}
 ```
 
 # Setup
