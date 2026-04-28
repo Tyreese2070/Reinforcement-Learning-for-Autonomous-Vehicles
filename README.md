@@ -52,3 +52,4 @@ git clone https://github.com/metadriverse/metadrive.git
 cd metadrive
 pip install -e .
 ```
+MetaDrive Documentation: https://metadrive-simulator.readthedocs.io/en/latest/
