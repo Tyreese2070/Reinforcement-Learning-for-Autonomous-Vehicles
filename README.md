@@ -32,6 +32,8 @@ Created and tested using Python 3.11.9
 
 │   ├── test_ppo.py         # Visual rendering/evaluation of trained models
 
+│   ├── eval.py             # Evaluation of trained models deployed in different environments
+
 ├── README.md
 
 └── requirements.txt        # Python dependencies
