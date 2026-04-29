@@ -1,9 +1,6 @@
 # Overview
 This project creates a hybrid algorithm, combining PPO, behavioural cloning, and curriculum learning to improve sample efficiency found in standard reinforcement learning and to overcome the cold start from random exploration.
 
-Created and tested using Python 3.11.9
-
-
 # Repository Structure and Usage
 
 ```text
@@ -61,4 +58,12 @@ git clone https://github.com/metadriverse/metadrive.git
 cd metadrive
 pip install -e .
 ```
+
+# Notes
+Created and tested using Python 3.11.9
+
+This repository doesn't contain the final models used in testing
+
+More help for installing metadrive can be found below
+
 MetaDrive Documentation: https://metadrive-simulator.readthedocs.io/en/latest/
