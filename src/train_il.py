@@ -31,7 +31,7 @@ class BehaviouralCloningModel(nn.Module):
             nn.Linear(128, 64),
             nn.ReLU(),
             nn.Linear(64, output_dim),
-            nn.Tanh() # Continuous action output betwene [-1, 1]
+            nn.Tanh() # Continuous action output between [-1, 1]
         )
     
     def forward(self, x):
